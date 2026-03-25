@@ -58,6 +58,10 @@ app.get('/dashboard', isAuth, (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/dashboard.html'));
 });
 
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+});
+
 // Global Error Handling Middleware
 app.use(errorHandler);
 
