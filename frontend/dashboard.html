@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./styles/login.css">
+</head>
+<body style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:#f4f7f6;">
+    
+    <div style="background:white; padding:40px; border-radius:15px; shadow:0 10px 20px rgba(0,0,0,0.1); text-align:center;">
+        <h1>Welcome, <span id="user-name" style="color:#e8716d;">Loading...</span>! 👋</h1>
+        <p id="user-email" style="color:#666;">Please wait while we fetch your data.</p>
+        
+        <button id="logout-btn" style="margin-top:20px; padding:10px 20px; border:none; background:#333; color:white; border-radius:5px; cursor:pointer;">Logout</button>
+    </div>
+
+    <script>
+        // Fetch user data as soon as the page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/auth/me');
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Update the UI with real data
+                    document.getElementById('user-name').innerText = result.data.name;
+                    document.getElementById('user-email').innerText = result.data.email;
+                } else {
+                    // If token is invalid, kick them back to login
+                    window.location.href = '/login';
+                }
+            } catch (err) {
+                console.error("Error fetching user data:", err);
+            }
+        });
+
+        // Logout logic
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            // In a real app, you should also clear the cookie on the server
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.href = '/login';
+        });
+    </script>
+</body>
+</html>
