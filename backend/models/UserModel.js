@@ -40,4 +40,4 @@ const UserSchema = new Schema(
 );
 
 // Exporting the model
-exports.UserModel = model("UserSchema", UserSchema);
+exports.UserModel = model("UserModel", UserSchema);
