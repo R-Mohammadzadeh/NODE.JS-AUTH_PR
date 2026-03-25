@@ -15,4 +15,6 @@ router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:token', resetPassword);
 // routes/authRouter.js
 router.get('/me', isAuth, getMe);
+
+
 module.exports = router;
