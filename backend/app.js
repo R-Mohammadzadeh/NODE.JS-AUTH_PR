@@ -1,10 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const path = require('path');
+const fs = require('fs');
 const morgan = require("morgan");
 const cors = require('cors'); 
 const cookieParser = require('cookie-parser');
-const path = require('path');
-const fs = require('fs');
 
 // Load environment variables
 dotenv.config();
@@ -34,19 +34,12 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 /* ------------------------------------
-    2. Static Files & Path Configuration
+    2. Path Configuration (The Fix)
 ------------------------------------ */
-// Using process.cwd() ensures paths work correctly on Vercel deployment
+// Using process.cwd() gets the ROOT folder where /frontend and /backend sit side-by-side
 const frontendPath = path.join(process.cwd(), 'frontend');
 
-// Debugging: Log if the frontend directory is found
-if (fs.existsSync(frontendPath)) {
-    console.log("SUCCESS: Frontend folder located at:", frontendPath);
-} else {
-    console.error("ERROR: Frontend folder NOT found at:", frontendPath);
-}
-
-// Serve static assets (CSS, JS, Images) from the frontend folder
+// Serve static assets (CSS, JS, Images)
 app.use(express.static(frontendPath));
 
 /* ------------------------------------
@@ -59,13 +52,12 @@ app.use('/api', userRouter);
     4. Frontend View Routes
 ------------------------------------ */
 
-// Root path - Sends the main login page
+// Main Login Page
 app.get('/', (req, res) => {
-    // Note: Ensure login.html exists directly inside the /frontend folder
     res.sendFile(path.join(frontendPath, 'login.html'));
 });
 
-// Login alias
+// Login Alias
 app.get('/login', (req, res) => {
     res.sendFile(path.join(frontendPath, 'login.html'));
 });
@@ -105,10 +97,9 @@ app.get('/auth/logout', (req, res) => {
     5. Error Handling
 ------------------------------------ */
 
-// Centralized error handler middleware
 app.use(errorHandler);
 
-// 404 Not Found Handler (Fallback for undefined routes)
+// 404 Not Found Handler
 app.use((req, res) => {
     const errorPage = path.join(frontendPath, '404.html');
     if (fs.existsSync(errorPage)) {
@@ -118,7 +109,6 @@ app.use((req, res) => {
     }
 });
 
-// Start the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
