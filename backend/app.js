@@ -41,7 +41,8 @@ if (fs.existsSync(frontendPath)) {
 }
 
 // Serve static files (CSS, JS, Images)
-app.use(express.static(frontendPath));
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
+
 
 // 3. API Routes
 app.use('/auth', authRouter);
@@ -50,7 +51,8 @@ app.use('/api', userRouter);
 // 4. Frontend View Routes
 // Root path redirects to login
 app.get('/', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'login.html'));
+  const loginPage = path.join(__dirname, '..', 'frontend', 'login.html');
+    res.sendFile(loginPage);
 });
 
 app.get('/login', (req, res) => {
