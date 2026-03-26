@@ -40,10 +40,6 @@ A robust, production-ready authentication system built with **Node.js** and **Ex
 git clone [https://github.com/R-Mohammadzadeh/NODE.JS-AUTH_PR.git](https://github.com/R-Mohammadzadeh/NODE.JS-AUTH_PR.git)
 cd NODE.JS-AUTH_PR
 
-Gemini hat gesagt
-بله، دقیقاً! همین متن پایین رو از اول تا آخر کپی کن و داخل فایل README.md توی VS Code قرار بده.
-
-من متن رو طوری تنظیم کردم که توی گیت‌هاب خیلی شیک و مرتب دیده بشه (با آیکون‌ها و جداول مخصوص):
 
 Markdown
 # 🔐 Secure Node.js Authentication System
