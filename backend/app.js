@@ -32,8 +32,8 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 // 2. Static Files Configuration
-const frontendPath = path.resolve(__dirname, '..', 'frontend');
-
+// const frontendPath = path.resolve(__dirname, '..', 'frontend');
+const frontendPath = path.join(process.cwd(), 'frontend');
 if (fs.existsSync(frontendPath)) {
     console.log("SUCCESS: Frontend folder found at:", frontendPath);
 } else {
