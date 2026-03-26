@@ -16,10 +16,6 @@
       "dest": "frontend/styles/$1"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "frontend/assets/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "backend/app.js"
     }
