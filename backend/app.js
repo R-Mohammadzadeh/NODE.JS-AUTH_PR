@@ -93,6 +93,11 @@ app.get('/auth/logout', (req, res) => {
     res.redirect('/login');    
 });
 
+// 404 Not Found Handler
+app.use((req, res) => {
+
+    res.status(404).sendFile(path.join(frontendPath, '404.html'));
+});
 /* ------------------------------------
     5. Error Handling
 ------------------------------------ */
