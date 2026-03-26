@@ -48,7 +48,8 @@ app.get('/admin-dashboard', isAuth, (req, res) => {
 // 5. Logout
 app.get('/auth/logout', (req, res) => {
     res.clearCookie('token'); 
-    res.redirect('/login');    
+    res.redirect('/login'); 
+   
 });
 
 // 6. ERROR HANDLER 
