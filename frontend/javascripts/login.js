@@ -34,15 +34,24 @@ loginForm.addEventListener('submit', async (e) => {
             body: JSON.stringify(data)
         });
 
-        const result = await res.json();
+        const user = await res.json();
 
-        if (res.ok) {
+     if (res.ok) {
+            localStorage.setItem('user', JSON.stringify(user));
+
             Swal.fire('Success', 'Welcome back!', 'success').then(() => {
-                // Redirect to dashboard or home page
-                window.location.href = '/dashboard'; 
+            
+                if (user.role === 'admin') {
+                    console.log("Redirecting to Admin Panel...");
+                    window.location.href = '/admin-dashboard'; 
+                } else {
+                    console.log("Redirecting to User Dashboard...");
+                    window.location.href = '/dashboard';
+                }
             });
         } else {
-            Swal.fire('Error', result.message || 'Login failed', 'error');
+          
+            Swal.fire('Error', user.message || 'Login failed', 'error');
         }
     } catch (err) {
         Swal.fire('Error', 'Server connection failed', 'error');

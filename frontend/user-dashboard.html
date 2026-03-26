@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Panel | Hotel OS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/user-dashboard.css">
+    <script src="javascripts/admin-panel.js"></script>
+</head>
+<body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">
+            <h2>Hotel OS</h2>
+        </div>
+        <nav>
+            <a href="#" class="active">My Profile</a>
+            <a href="#">My Bookings</a>
+            <a href="#">Support</a>
+            <a href="#">Settings</a>
+        </nav>
+        <div class="sidebar-footer">
+            <hr style="opacity: 0.1; margin-bottom: 15px;">
+            <a href="/auth/logout" class="logout-link" style="text-decoration: none; color: #eb4d4b; padding: 10px 16px; display: block;">
+                <span class="icon">⏻</span> Logout
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <div class="header-title">
+                <h1 id="userNameDisplay">Welcome!</h1>
+                <span id="userRoleDisplay" class="status confirmed" style="display:none;"></span>
+                <p>Enjoy your stay with us</p>
+                <div class="date-time-container" style="margin-top: 10px; color: var(--text-light); font-size: 0.85rem;">
+    <span id="currentDate"></span> | <span id="currentTime" style="font-weight: 600; color: var(--primary-color);"></span>
+</div>
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="card">
+                <h3>My Next Stay</h3>
+                <p class="stat-value">Oct 28, 2023</p>
+                <span class="trend">Room 302 (Deluxe)</span>
+            </div>
+            <div class="card">
+                <h3>Loyalty Points</h3>
+                <p class="stat-value">450 pts</p>
+                <span class="trend" style="color: #0984e3;">Silver Member</span>
+            </div>
+        </section>
+
+        <section class="table-container">
+            <div class="table-header">
+                <h3>My Recent Bookings</h3>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>DATE</th>
+                            <th>ROOM</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="DATE">Aug 12, 2023</td>
+                            <td data-label="ROOM">Standard 105</td>
+                            <td data-label="STATUS"><span class="status confirmed">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

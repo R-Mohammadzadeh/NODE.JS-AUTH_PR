@@ -1,3 +1,4 @@
+const { router } = require('json-server');
 const jwt = require('jsonwebtoken');
 
 /**
@@ -29,9 +30,24 @@ exports.isAuth = (req, res, next) => {
  * Middleware to restrict access to admin users only
  */
 exports.isAdmin = (req, res, next) => {
-    if (req.user && req.user.role === 'admin') {
-        next();
-    } else {
-        res.status(403).json({ message: 'Access denied: Admins only' });
+    const token = req.cookies.token
+    if(!token) return res.redirect('/login')
+
+        try{
+    const decoded = jwt.verify(token , process.env.SECRET_KEY)
+    req.user = decoded        
+
+    if(decoded.role === 'admin'){
+        next()
+    }else{
+        res.redirect('/user-dashboard');
     }
+        }
+   catch(error){
+    res.redirect('/login')
+   }
+
+   router.get('/dashboard' , isAdmin , (req , res) => {
+    res.render('dashboard')
+   })
 };

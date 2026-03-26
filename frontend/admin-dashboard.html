@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./styles/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./javascripts/admin-panel.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+
+    <button class="menu-toggle" id="menuToggle" style="justify-content: center; align-items: center; cursor: pointer; border: none;">☰</button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">
+            <h2>Hotel OS</h2>
+        </div>
+        <nav>
+            <a href="#" class="active">Overview</a>
+            <a href="#">Bookings</a>
+            <a href="#">Rooms</a>
+            <a href="#">Guests</a>
+            <a href="#">Settings</a>
+        </nav>
+        <div class="sidebar-footer">
+            <hr>
+            <a href="/auth/logout" class="logout-link">
+                <span class="icon">⏻</span>Logout</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <div class="header-title">
+                <h1>Dashboard</h1>
+                <p>Overview of your hotel's performance</p>
+                <div class="date-time-container" style="margin-top: 10px; color: var(--text-light); font-size: 0.85rem;">
+    <span id="currentDate"></span> | <span id="currentTime" style="font-weight: 600; color: var(--primary-color);"></span>
+</div>
+            </div>
+            <div class="user-profile" style="display: flex; align-items: center; gap: 10px;">
+    <span id="userNameDisplay" style="font-weight: 600;">Loading...</span>
+    
+    <span id="userRoleDisplay" class="status confirmed" 
+          style="font-size: 0.75rem; text-transform: uppercase; padding: 4px 12px; display: none;">
+    </span>
+</div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="card">
+                <h3>Total Bookings</h3>
+                <p class="stat-value">128</p>
+                <span class="trend up">+12% this week</span>
+            </div>
+            <div class="card">
+                <h3>Occupied Rooms</h3>
+                <p class="stat-value">42/50</p>
+                <span class="trend">84% Capacity</span>
+            </div>
+            <div class="card">
+                <h3>Daily Revenue</h3>
+                <p class="stat-value">$1,250</p>
+                <span class="trend up">+5% from yesterday</span>
+            </div>
+        </section>
+
+<section class="charts-container" style="margin-bottom: 30px;">
+<div class="card chart-card" style="max-width: 400px; margin: 0 auto;">
+<h3>Room Status Overview</h3>
+<canvas id="roomsChart"></canvas>
+</div>
+</section>
+
+
+        <section class="table-container">
+    <div class="table-header">
+        <h3>User Management</h3>
+        <button class="view-all" onclick="fetchAllUsers()">Refresh List</button>
+    </div>
+    <div class="table-wrapper">
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>ROLE</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                </tbody>
+        </table>
+    </div>
+</section>
+    </main>
+</body>
+</html>

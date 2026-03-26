@@ -3,7 +3,7 @@ const router = express.Router();
 const { isAuth, isAdmin } = require('../middleware/auth'); 
 
 // Import authentication controllers
-const { register, login, deleteUser, forgotPassword, resetPassword , getMe } = require('../controllers/authController');
+const { register, login, deleteUser, forgotPassword, resetPassword , getMe ,  } = require('../controllers/authController');
 
 // Authentication routes
 router.post('/register', register);
