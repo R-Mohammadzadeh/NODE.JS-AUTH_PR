@@ -13,7 +13,7 @@ router.get('/me', isAuth, getMe);
 // Logout Route
 router.get('/logout', (req, res) => {
     res.clearCookie('token', { path: '/' });
-    return res.status(200).json({ message: "Logged out successfully" });
+    return res.redirect('/login');
 });
 
 module.exports = router;
