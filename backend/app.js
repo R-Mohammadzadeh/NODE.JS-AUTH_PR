@@ -41,7 +41,7 @@ if (fs.existsSync(frontendPath)) {
 }
 
 // Serve static files (CSS, JS, Images)
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
+app.use(express.static(frontendPath));
 
 
 // 3. API Routes
@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'login.html'));
+    res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 // Dashboard route with Authentication check

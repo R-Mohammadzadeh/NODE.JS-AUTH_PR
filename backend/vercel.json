@@ -7,17 +7,7 @@
     }
   ],
   "routes": [
-    {
-      "src": "/auth/(.*)",
-      "dest": "backend/app.js"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/app.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "backend/app.js"
-    }
+    { "src": "/auth/(.*)", "dest": "backend/app.js" },
+    { "src": "/(.*)", "dest": "backend/app.js" }
   ]
 }
