@@ -34,7 +34,7 @@ window.onload = () => {
         const subTitle = document.querySelector('.header-title p');
         if (subTitle) {
             const hour = new Date().getHours();
-            let greeting = hour < 12 ? "Good Morning " : (hour < 18 ? "Good Afternoon " : "Good Evening 🌙");
+            let greeting = hour < 12 ? "Good Morning " : (hour < 18 ? "Good Afternoon " : "Good Evening");
             subTitle.textContent = `${greeting}, ${userData.name || userData.email.split('@')[0]}`;
             subTitle.classList.add('fade-in-text'); 
         }
@@ -65,7 +65,7 @@ function updateDateTime() {
 function initRoomsChart() {
     const ctx = document.getElementById('roomsChart').getContext('2d');
     new Chart(ctx, {
-        type: 'doughnut', // من دایره‌ای توخالی رو پیشنهاد میدم، شیک‌تره!
+        type: 'doughnut', 
         data: {
             labels: ['Occupied', 'Vacant', 'Cleaning'],
             datasets: [{
